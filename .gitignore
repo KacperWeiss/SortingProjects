@@ -1,0 +1,10 @@
+$ cat .gitignore
+*.[oa]
+*~
+obj/
+.vscode/
+dox/
+logs/
+QuickSort
+MergeSort
+IntroSort
