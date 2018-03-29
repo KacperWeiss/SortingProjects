@@ -1,13 +1,12 @@
 # compiler settings
 CPP = g++ -Wall -pedantic -std=c++17 -c -g -Iinc
 BOOST = -lboost_system -lboost_filesystem
-LOOGER = ../MyLoggerClass
 
 # __start__: clear IntroSort
 # 	./IntroSort
 
-IntroSort: prj/obj prj/obj/main.o prj/obj/logger.o
-	g++ prj/obj/logger.o prj/obj/main.o -o IntroSort
+IntroSort: prj/obj prj/obj/main.o
+	g++ prj/obj/main.o -o IntroSort
  ${BOOST}
 
 prj/obj:
@@ -15,9 +14,6 @@ prj/obj:
 
 prj/obj/main.o: prj/main.cpp
 	${CPP} prj/main.cpp -o prj/obj/main.o
-
-prj/obj/logger.o: ${LOOGER}/src/logger.cpp ${LOOGER}/inc/logger.hpp
-	${CPP} ${LOOGER}/src/logger.cpp -o prj/obj/logger.o ${BOOST}
 
 clear:
 	rm -rf prj/obj logs
