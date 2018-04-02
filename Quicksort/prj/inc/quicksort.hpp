@@ -29,7 +29,7 @@ bool quickSort(std::vector<T>& vec, int left, int right){
                 quickSort(vec, i, right);
 
             if(j > left)
-                quickSort(vec, j, right);
+                quickSort(vec, left, j);
 
             return true;
 
