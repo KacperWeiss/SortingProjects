@@ -5,6 +5,7 @@ obj/
 .vscode/
 dox/
 logs/
+testQS
 QuickSort
 MergeSort
 IntroSort
