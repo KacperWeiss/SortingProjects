@@ -1,19 +1,41 @@
 #ifndef QUICKSORT
 #define QUICKSORT
 
-#include <vector>
+#include "quicksortswap.hpp"
 
 template<class T>
-bool quickSort(std::vector<T>& vec, int i, int j){
+bool quickSort(std::vector<T>& vec, int left, int right){
 
-    return true;
+    if(vec.empty())
+        return false;
 
-}
+    int i = left, j = right;
+    T piv = vec[(right - left)/2 + left];
 
-template<class T>
-bool qsSwap(std::vector<T>& vec, int i, int j){
+    while(i < right || j > left){
 
-    return true;
+        while(vec[i] < piv) i++;
+        while(vec[j] > piv) j--;
+
+        if(i <= j){
+
+            qsSwap(vec, i, j);
+            i++;
+            j--;
+
+        } else {
+
+            if(i < right)
+                quickSort(vec, i, right);
+
+            if(j > left)
+                quickSort(vec, j, right);
+
+            return true;
+
+        }
+
+    }
 
 }
 

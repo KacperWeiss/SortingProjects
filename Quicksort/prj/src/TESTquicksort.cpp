@@ -16,21 +16,33 @@ struct myFixture{
 
         quickSort(elems, 0, elems.size());
 
-        sorted = true;
-
-        for(unsigned int i = 1; i < elems.size(); i++)
-            if(elems[i-1] <= elems[i]);
-                sorted = false;
-
     }
 
     std::vector<int> elems;
-    bool sorted;
 
 };
 
-BOOST_FIXTURE_TEST_CASE(testSort, myFixture){
+
+BOOST_FIXTURE_TEST_CASE(testQuickSort, myFixture){
+
+    bool sorted = true;
+
+    for(unsigned int i = 1; i < elems.size(); i++)
+        if(elems[i-1] <= elems[i]);
+            sorted = false;
 
     BOOST_CHECK_EQUAL(sorted, true);
+
+}
+
+BOOST_FIXTURE_TEST_CASE(testSwap, myFixture){
+
+    int i = 0, j = 1;
+    int temp1 = elems[i], temp2 = elems[j];
+
+    qsSwap(elems, i, j);
+    
+    BOOST_CHECK_EQUAL(temp1, elems[j]);
+    BOOST_CHECK_EQUAL(temp2, elems[i]);
 
 }

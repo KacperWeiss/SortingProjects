@@ -1,6 +1,7 @@
 # compiler settings
 CPP = g++ -Wall -pedantic -std=c++17 -c -g -Iinc
 BOOST = -lboost_system -lboost_filesystem
+TEST_CPP = g++ -std=c++17 -c -g
 TEST = -lboost_unit_test_framework
 
 # __start__: clear QuickSort
@@ -27,6 +28,6 @@ clearLogs:
 testQS_run: testQS
 	./testQS --log_level=test_suite
 
-testQS: prj/obj prj/inc/quicksort.hpp prj/src/TESTquicksort.cpp
-	${CPP} -o prj/obj/TESTquicksort.o prj/src/TESTquicksort.cpp ${TEST}
+testQS: prj/obj prj/inc/quicksort.hpp prj/inc/quicksortswap.hpp prj/src/TESTquicksort.cpp
+	${TEST_CPP} -o prj/obj/TESTquicksort.o prj/src/TESTquicksort.cpp ${TEST}
 	g++ -o testQS prj/obj/TESTquicksort.o ${TEST}
