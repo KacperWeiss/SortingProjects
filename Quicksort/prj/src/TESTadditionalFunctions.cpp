@@ -6,7 +6,7 @@
 
 
 
-BOOST_AUTO_TEST_CASE(testShowMenu){
+BOOST_AUTO_TEST_CASE(test_showMenu){
 
     BOOST_CHECK_MESSAGE(showMenu(), "Failure in showMenu function.");
 
@@ -28,9 +28,9 @@ struct myFixture{
 };
 
 
-BOOST_FIXTURE_TEST_SUITE(testBasicFunctions, myFixture);
+BOOST_FIXTURE_TEST_SUITE(test_Basic_Functions, myFixture);
 
-    BOOST_FIXTURE_TEST_CASE(testAscendingQS, myFixture){
+    BOOST_FIXTURE_TEST_CASE(test_ascendingQS, myFixture){
 
         ascendingQS(elems);
         bool sorted = true;
@@ -40,7 +40,14 @@ BOOST_FIXTURE_TEST_SUITE(testBasicFunctions, myFixture);
 
     }
 
-    BOOST_FIXTURE_TEST_CASE(testDescendingQS, myFixture){
+    BOOST_AUTO_TEST_CASE(test_Ascending_if_elems_are_empty){
+
+        std::vector<int> elems;
+        BOOST_REQUIRE_EQUAL(ascendingQS(elems), false);
+
+    }
+
+    BOOST_FIXTURE_TEST_CASE(test_descendingQS, myFixture){
 
         descendingQS(elems);
         bool sorted = true;
@@ -50,7 +57,14 @@ BOOST_FIXTURE_TEST_SUITE(testBasicFunctions, myFixture);
 
     }
 
-    BOOST_FIXTURE_TEST_CASE(testAddRandomValues, myFixture){
+    BOOST_AUTO_TEST_CASE(test_Descending_if_elems_are_empty){
+
+        std::vector<int> elems;
+        BOOST_REQUIRE_EQUAL(descendingQS(elems), false);
+
+    }
+
+    BOOST_FIXTURE_TEST_CASE(test_addRandomValues, myFixture){
 
         addRandomValues(elems, 100);
         BOOST_CHECK_EQUAL(elems.size(), 200);
@@ -60,13 +74,13 @@ BOOST_FIXTURE_TEST_SUITE(testBasicFunctions, myFixture);
 BOOST_AUTO_TEST_SUITE_END();
 
 
-BOOST_AUTO_TEST_CASE(testQuickPresentation){
+BOOST_AUTO_TEST_CASE(test_quickPresentation){
 
     BOOST_CHECK_MESSAGE(quickPresentation(), "Presentation failure.");
 
 }
 
-BOOST_AUTO_TEST_CASE(testProgram){
+BOOST_AUTO_TEST_CASE(test_program){
 
     BOOST_CHECK_MESSAGE(program(), "Program not exited properly.");
 
