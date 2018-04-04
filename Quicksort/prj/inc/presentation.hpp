@@ -6,7 +6,9 @@
 #include "../../../MyLoggerClass/inc/logger.hpp"
 
 
-bool testWithPartSorted(fs::ofstream& out, std::vector<int>& vec, Logger& logger, clock_t& start, int all, int sorted){
+bool testWithPartSorted(std::vector<int>& vec, Logger& logger, clock_t& start, int all, int sorted){
+
+    fs::ofstream out(logger.getLogsPath(), std::ios::out | std::ios::app);
 
     for(int i=1; i <= 100; i++){
 
@@ -16,7 +18,7 @@ bool testWithPartSorted(fs::ofstream& out, std::vector<int>& vec, Logger& logger
 
         start = clock();
         ascendingQS(vec);
-        out << "Execution time: " << (clock() - start)*1000/CLOCKS_PER_SEC << "ms\n";
+        out << "Execution time: " << (clock() - start)*1000000/CLOCKS_PER_SEC << "mks\n";
 
         vec.clear();
 
@@ -26,7 +28,9 @@ bool testWithPartSorted(fs::ofstream& out, std::vector<int>& vec, Logger& logger
 
 }
 
-bool testWithReversed(fs::ofstream& out, std::vector<int>& vec, Logger& logger, clock_t& start, int all){
+bool testWithReversed(std::vector<int>& vec, Logger& logger, clock_t& start, int all){
+
+    fs::ofstream out(logger.getLogsPath(), std::ios::out | std::ios::app);
 
     for(int i=1; i <= 100; i++){
 
@@ -35,7 +39,7 @@ bool testWithReversed(fs::ofstream& out, std::vector<int>& vec, Logger& logger, 
 
         start = clock();
         ascendingQS(vec);
-        out << "Execution time: " << (clock() - start)*1000/CLOCKS_PER_SEC << "ms\n";
+        out << "Execution time: " << (clock() - start)*1000000/CLOCKS_PER_SEC << "ms\n";
 
         vec.clear();
 
@@ -52,32 +56,30 @@ bool setTest(std::string loggername, int all){
     std::vector<int> elems;
     Logger logger(loggername);
 
-    fs::ofstream out(logger.getLogsPath(), std::ios::out | std::ios::app);
-
 
     logger.logToFile("All random:\n");
-    testWithPartSorted(out, elems, logger, start, all, 0);
+    testWithPartSorted(elems, logger, start, all, 0);
     
     logger.logToFile("25% sorted:\n");
-    testWithPartSorted(out, elems, logger, start, all, int(all*0.25));
+    testWithPartSorted(elems, logger, start, all, int(all*0.25));
         
     logger.logToFile("50% sorted:\n");
-    testWithPartSorted(out, elems, logger, start, all, int(all*0.5));
+    testWithPartSorted(elems, logger, start, all, int(all*0.5));
         
     logger.logToFile("75% sorted:\n");
-    testWithPartSorted(out, elems, logger, start, all, int(all*0.75));
+    testWithPartSorted(elems, logger, start, all, int(all*0.75));
         
     logger.logToFile("95% sorted:\n");
-    testWithPartSorted(out, elems, logger, start, all, int(all*0.95));
+    testWithPartSorted(elems, logger, start, all, int(all*0.95));
 
     logger.logToFile("99% sorted:\n");
-    testWithPartSorted(out, elems, logger, start, all, int(all*0.99));
+    testWithPartSorted(elems, logger, start, all, int(all*0.99));
             
     logger.logToFile("99.7% sorted:\n");
-    testWithPartSorted(out, elems, logger, start, all, int(all*0.997));
+    testWithPartSorted(elems, logger, start, all, int(all*0.997));
 
     logger.logToFile("All sorted descending:\n");
-    testWithReversed(out, elems, logger, start, all);
+    testWithReversed(elems, logger, start, all);
 
     return true;
 
