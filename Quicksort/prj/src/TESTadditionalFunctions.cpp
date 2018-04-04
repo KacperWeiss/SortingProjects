@@ -72,16 +72,3 @@ BOOST_FIXTURE_TEST_SUITE(test_Basic_Functions, myFixture);
     }
 
 BOOST_AUTO_TEST_SUITE_END();
-
-
-BOOST_AUTO_TEST_CASE(test_quickPresentation){
-
-    BOOST_CHECK_MESSAGE(quickPresentation(), "Presentation failure.");
-
-}
-
-BOOST_AUTO_TEST_CASE(test_program){
-
-    BOOST_CHECK_MESSAGE(program(), "Program not exited properly.");
-
-}
