@@ -31,14 +31,20 @@ bool showMenu(){
 template <class T>
 bool ascendingQS(std::vector<T>& vec){
 
+    if(vec.emty())
+        return false;
 
+    return quickSort(vec, 0, vec.size());
 
 }
 
 template <class T>
 bool descendingQS(std::vector<T>& vec){
 
+    if(vec.emty())
+        return false;
 
+    return quickSortReverse(vec, 0, vec.size());
 
 }
 
