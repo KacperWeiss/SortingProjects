@@ -45,7 +45,12 @@ bool descendingQS(std::vector<T>& vec){
 template <class T>
 bool addRandomValues(std::vector<T>& vec, int quantity){
 
+    srand(time(nullptr));
 
+    for(int i = 0; i < quantity; i++)
+        vec.push_back(rand());
+
+    return true;
 
 }
 
