@@ -1,5 +1,6 @@
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
+#include <iostream>
 #include <cstring>
 #include <ctime>
 
@@ -16,5 +17,7 @@ class Logger{
         bool setNewLogFile(std::string fileName);
 
         bool logToFile(std::string msg);
+
+        fs::path getLogsPath(){ return logsPath; }
 
 };

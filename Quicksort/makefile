@@ -38,7 +38,7 @@ testQS_run: testQS
 testAF_run: testAF
 	./testAF --log_level=test_suite
 
-testQP_run: testQP
+testQP_run: clearLogs testQP
 	./testQP --log_level=test_suite
 
 testP_run: testP
