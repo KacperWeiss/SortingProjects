@@ -28,26 +28,41 @@ bool showMenu(){
     
 }
 
+/*!
+ * \brief Sorts elements in ascending order.
+ * 
+ * Function that sort elements in ascending order.
+ */
 template <class T>
 bool ascendingQS(std::vector<T>& vec){
 
-    if(vec.emty())
+    if(vec.empty())
         return false;
 
     return quickSort(vec, 0, vec.size());
 
 }
 
+/*!
+ * \brief Sorts elements in descending order.
+ * 
+ * Function that sort elements in descending order.
+ */
 template <class T>
 bool descendingQS(std::vector<T>& vec){
 
-    if(vec.emty())
+    if(vec.empty())
         return false;
 
     return quickSortReverse(vec, 0, vec.size());
 
 }
 
+/*!
+ * \brief Adds random elements.
+ * 
+ * Function that adds random elements into choosen vector.
+ */
 template <class T>
 bool addRandomValues(std::vector<T>& vec, int quantity){
 
