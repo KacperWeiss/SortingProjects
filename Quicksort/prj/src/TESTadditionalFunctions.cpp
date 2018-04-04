@@ -27,32 +27,38 @@ struct myFixture{
 
 };
 
-BOOST_FIXTURE_TEST_CASE(testAscendingQS, myFixture){
 
-    ascendingQS(elems);
-    bool sorted = true;
+BOOST_FIXTURE_TEST_SUITE(testBasicFunctions, myFixture);
 
-    for(int i = 1; i < elems.size(); i++)
-        BOOST_CHECK_LE(elems[i-1], elems[i]);
+    BOOST_FIXTURE_TEST_CASE(testAscendingQS, myFixture){
 
-}
+        ascendingQS(elems);
+        bool sorted = true;
 
-BOOST_FIXTURE_TEST_CASE(testDescendingQS, myFixture){
+        for(int i = 1; i < elems.size(); i++)
+            BOOST_CHECK_LE(elems[i-1], elems[i]);
 
-    descendingQS(elems);
-    bool sorted = true;
+    }
 
-    for(int i = 1; i < elems.size(); i++)
-        BOOST_CHECK_GE(elems[i-1], elems[i]);
+    BOOST_FIXTURE_TEST_CASE(testDescendingQS, myFixture){
 
-}
+        descendingQS(elems);
+        bool sorted = true;
 
-BOOST_FIXTURE_TEST_CASE(testAddRandomValues, myFixture){
+        for(int i = 1; i < elems.size(); i++)
+            BOOST_CHECK_GE(elems[i-1], elems[i]);
 
-    addRandomValues(elems, 100);
-    BOOST_CHECK_EQUAL(elems.size(), 200);
+    }
 
-}
+    BOOST_FIXTURE_TEST_CASE(testAddRandomValues, myFixture){
+
+        addRandomValues(elems, 100);
+        BOOST_CHECK_EQUAL(elems.size(), 200);
+
+    }
+
+BOOST_AUTO_TEST_SUITE_END();
+
 
 BOOST_AUTO_TEST_CASE(testQuickPresentation){
 
