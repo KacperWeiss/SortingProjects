@@ -7,7 +7,7 @@ TEST = -lboost_unit_test_framework
 __START__: clearObj QuickSort
 	./QuickSort
 
-QuickSort: prj/obj prj/obj/main.o
+QuickSort: prj/obj prj/obj/main.o prj/obj/logger.o
 	g++ prj/obj/main.o prj/obj/logger.o -o QuickSort ${BOOST}
 
 prj/obj:
