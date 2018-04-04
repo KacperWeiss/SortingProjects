@@ -2,7 +2,7 @@
 #define BOOST_TEST_MODULE TestP
 
 #include <boost/test/unit_test.hpp>
-#include "../inc/presentation.hpp"
+#include "../inc/program.hpp"
 
 
 

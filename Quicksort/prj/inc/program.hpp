@@ -45,7 +45,7 @@ bool program(){
 
             else if(selector == 't'){
 
-                quickMYPROGRAM();
+                quickPresentation();
                 selector = 'q';
 
             }

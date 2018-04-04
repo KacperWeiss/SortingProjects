@@ -4,17 +4,20 @@ BOOST = -lboost_system -lboost_filesystem
 TEST_CPP = g++ -std=c++17 -c -g
 TEST = -lboost_unit_test_framework
 
-__START__: clear QuickSort
+__START__: clearObj QuickSort
 	./QuickSort
 
 QuickSort: prj/obj prj/obj/main.o
-	g++ prj/obj/main.o -o QuickSort ${BOOST}
+	g++ prj/obj/main.o prj/obj/logger.o -o QuickSort ${BOOST}
 
 prj/obj:
 	mkdir prj/obj
 
-prj/obj/main.o: prj/main.cpp prj/inc/quicksort.hpp prj/inc/quicksortswap.hpp prj/inc/additionalFunctions.hpp prj/inc/presentation.hpp prj/inc/program.hpp
+prj/obj/main.o: prj/main.cpp prj/inc/quicksort.hpp prj/inc/quicksortswap.hpp prj/inc/additionalFunctions.hpp prj/inc/presentation.hpp prj/inc/program.hpp 
 	${CPP} prj/main.cpp -o prj/obj/main.o
+
+prj/obj/logger.o: ../MyLoggerClass/inc/logger.hpp
+	${CPP} ../MyLoggerClass/src/logger.cpp -o prj/obj/logger.o ${BOOST}
 
 clear:
 	rm -rf prj/obj logs
@@ -49,10 +52,10 @@ testAF: prj/obj prj/inc/quicksort.hpp prj/inc/quicksortswap.hpp prj/inc/addition
 	${TEST_CPP} -o prj/obj/TESTadditionalFunctions.o prj/src/TESTadditionalFunctions.cpp ${TEST}
 	g++ -o testAF prj/obj/TESTadditionalFunctions.o ${TEST}
 
-testQP: prj/obj prj/inc/quicksort.hpp prj/inc/quicksortswap.hpp prj/inc/presentation.hpp prj/src/TESTpresentation.cpp
-	${TEST_CPP} -o prj/obj/TESTpresentation.o prj/src/TESTpresentation.cpp ${TEST} ${BOOST}
-	g++ -o testQP prj/obj/TESTpresentation.o ${TEST} ${BOOST}
+testQP: prj/obj prj/inc/quicksort.hpp prj/inc/quicksortswap.hpp prj/inc/presentation.hpp prj/obj/logger.o prj/src/TESTpresentation.cpp
+	${TEST_CPP} -o prj/obj/TESTpresentation.o prj/src/TESTpresentation.cpp ${TEST}
+	g++ -o testQP prj/obj/TESTpresentation.o prj/obj/logger.o ${BOOST} ${TEST}
 
 testP: prj/obj prj/inc/quicksort.hpp prj/inc/quicksortswap.hpp prj/inc/presentation.hpp prj/inc/program.hpp prj/src/TESTprogram.cpp
-	${TEST_CPP} -o prj/obj/TESTprogram.o prj/src/TESTprogram.cpp ${TEST} ${BOOST}
-	g++ -o testP prj/obj/TESTprogram.o ${TEST} ${BOOST}
+	${TEST_CPP} -o prj/obj/TESTprogram.o prj/src/TESTprogram.cpp ${TEST}
+	g++ -o testP prj/obj/TESTprogram.o prj/obj/logger.o ${BOOST} ${TEST}
