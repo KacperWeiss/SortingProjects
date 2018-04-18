@@ -4,7 +4,7 @@ BOOST = -lboost_system -lboost_filesystem
 TEST_CPP = g++ -std=c++17 -c -g
 TEST = -lboost_unit_test_framework
 
-__START__: clearObj QuickSort
+__START__: clear QuickSort
 	./QuickSort
 
 QuickSort: prj/obj prj/obj/main.o prj/obj/logger.o
