@@ -69,7 +69,7 @@ bool addRandomValues(std::vector<T>& vec, int quantity){
     srand(time(nullptr));
 
     for(int i = 0; i < quantity; i++)
-        vec.push_back(rand());
+        vec.push_back(rand() * rand());
 
     return true;
 

@@ -27,11 +27,21 @@ bool program(){
 
         if(strchr("adrtmq", selector)){
 
-            if(selector == 'a')
-                ascendingQS(elems);
+            if(selector == 'a'){
 
-            else if(selector == 'd')
+                std::clock_t start = clock();
+                ascendingQS(elems);
+                std::cout << "Execution time: " << (clock() - start)*1000000/CLOCKS_PER_SEC << "mks\n";
+
+            }
+
+            else if(selector == 'd'){
+
+                std::clock_t start = clock();
                 descendingQS(elems);
+                std::cout << "Execution time: " << (clock() - start)*1000000/CLOCKS_PER_SEC << "mks\n";
+
+            }
 
             else if(selector == 'r'){
 

@@ -5,16 +5,50 @@
 #include "additionalFunctions.hpp"
 #include "../../../MyLoggerClass/inc/logger.hpp"
 
+bool testWithPartSorted2(Logger& logger, clock_t& start, int all, int sorted){
 
-bool testWithPartSorted(std::vector<int>& vec, Logger& logger, clock_t& start, int all, int sorted){
-
+    std::vector<int> vec;
     fs::ofstream out(logger.getLogsPath(), std::ios::out | std::ios::app);
+
+    addRandomValues(vec, sorted);
+    ascendingQS(vec);
+    addRandomValues(vec, all-sorted);
+
+    start = clock();
+    ascendingQS(vec);
+    out << "Execution time: " << (clock() - start)*1000000/CLOCKS_PER_SEC << "mks\n";
+
+    vec.clear();
+    return true;
+
+}
+
+
+bool testWithPartSorted(Logger& logger, clock_t& start, int all, int sorted){
+
+    fs::ofstream endlout(logger.getLogsPath(), std::ios::out | std::ios::app);
 
     for(int i=1; i <= 100; i++){
 
-        addRandomValues(vec, sorted);
-        ascendingQS(vec);
-        addRandomValues(vec, all-sorted);
+       testWithPartSorted2(logger, start, all, sorted);
+
+    }
+    endlout << "\n\n\n";
+    return true;
+
+}
+
+bool testWithReversed(Logger& logger, clock_t& start, int all){
+
+    fs::ofstream endlout(logger.getLogsPath(), std::ios::out | std::ios::app);
+
+    for(int i=1; i <= 100; i++){
+
+        std::vector<int> vec;
+        fs::ofstream out(logger.getLogsPath(), std::ios::out | std::ios::app);
+
+        addRandomValues(vec, all);
+        descendingQS(vec);
 
         start = clock();
         ascendingQS(vec);
@@ -23,28 +57,7 @@ bool testWithPartSorted(std::vector<int>& vec, Logger& logger, clock_t& start, i
         vec.clear();
 
     }
-    out << "\n\n\n";
-    return true;
-
-}
-
-bool testWithReversed(std::vector<int>& vec, Logger& logger, clock_t& start, int all){
-
-    fs::ofstream out(logger.getLogsPath(), std::ios::out | std::ios::app);
-
-    for(int i=1; i <= 100; i++){
-
-        addRandomValues(vec, all);
-        descendingQS(vec);
-
-        start = clock();
-        ascendingQS(vec);
-        out << "Execution time: " << (clock() - start)*1000000/CLOCKS_PER_SEC << "ms\n";
-
-        vec.clear();
-
-    }
-    out << "\n\n\n";
+    endlout << "\n\n\n";
     return true;
 
 }
@@ -52,34 +65,32 @@ bool testWithReversed(std::vector<int>& vec, Logger& logger, clock_t& start, int
 bool setTest(std::string loggername, int all){
 
     clock_t start;
-
-    std::vector<int> elems;
     Logger logger(loggername);
 
 
     logger.logToFile("All random:\n");
-    testWithPartSorted(elems, logger, start, all, 0);
+    testWithPartSorted(logger, start, all, 0);
     
     logger.logToFile("25% sorted:\n");
-    testWithPartSorted(elems, logger, start, all, int(all*0.25));
+    testWithPartSorted(logger, start, all, int(all*0.25));
         
     logger.logToFile("50% sorted:\n");
-    testWithPartSorted(elems, logger, start, all, int(all*0.5));
+    testWithPartSorted(logger, start, all, int(all*0.5));
         
     logger.logToFile("75% sorted:\n");
-    testWithPartSorted(elems, logger, start, all, int(all*0.75));
+    testWithPartSorted(logger, start, all, int(all*0.75));
         
     logger.logToFile("95% sorted:\n");
-    testWithPartSorted(elems, logger, start, all, int(all*0.95));
+    testWithPartSorted(logger, start, all, int(all*0.95));
 
     logger.logToFile("99% sorted:\n");
-    testWithPartSorted(elems, logger, start, all, int(all*0.99));
+    testWithPartSorted(logger, start, all, int(all*0.99));
             
     logger.logToFile("99.7% sorted:\n");
-    testWithPartSorted(elems, logger, start, all, int(all*0.997));
+    testWithPartSorted(logger, start, all, int(all*0.997));
 
     logger.logToFile("All sorted descending:\n");
-    testWithReversed(elems, logger, start, all);
+    testWithReversed(logger, start, all);
 
     return true;
 
