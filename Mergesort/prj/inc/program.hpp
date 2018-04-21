@@ -79,6 +79,7 @@ bool program(){
 
     }
 
+    delete[] tab;
     return true;
 
 }
