@@ -18,7 +18,7 @@ bool showMenu(){
     cout    << endl
             << "a - sort ascending\n"
             << "d - sort descending\n"
-            << "r - adds given amount of random elements to array\n"
+            << "r - make elements random\n"
             << "t - quick test\n\n"
             << "m - show menu\n"
             << "q - quit program\n"

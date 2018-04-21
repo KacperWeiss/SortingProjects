@@ -28,7 +28,7 @@ clearObj:
 clearLogs:
 	rm -rf logs
 
-# run_all_tests: testMS_run testAF_run testQP_run testP_run
+run_all_tests: testMS_run testAF_run testQP_run testP_run
 
 presentation: testQP_run
 
@@ -41,8 +41,8 @@ testAF_run: testAF
 testQP_run: clearLogs testQP
 	./testQP --log_level=test_suite
 
-# testP_run: testP
-# 	./testP --log_level=test_suite	
+testP_run: testP
+	./testP --log_level=test_suite	
 
 testMS: prj/obj prj/inc/mergesort.hpp prj/inc/merge.hpp prj/src/TESTmergesort.cpp
 	${TEST_CPP} -o prj/obj/TESTmergesort.o prj/src/TESTmergesort.cpp ${TEST}
@@ -56,6 +56,6 @@ testQP: prj/obj prj/inc/mergesort.hpp prj/inc/merge.hpp prj/inc/presentation.hpp
 	${TEST_CPP} -o prj/obj/TESTpresentation.o prj/src/TESTpresentation.cpp ${TEST}
 	g++ -o testQP prj/obj/TESTpresentation.o prj/obj/logger.o ${BOOST} ${TEST}
 
-# testP: prj/obj prj/inc/mergesort.hpp prj/inc/merge.hpp prj/inc/presentation.hpp prj/inc/program.hpp prj/src/TESTprogram.cpp
-# 	${TEST_CPP} -o prj/obj/TESTprogram.o prj/src/TESTprogram.cpp ${TEST}
-# 	g++ -o testP prj/obj/TESTprogram.o prj/obj/logger.o ${BOOST} ${TEST}
+testP: prj/obj prj/inc/mergesort.hpp prj/inc/merge.hpp prj/inc/presentation.hpp prj/inc/program.hpp prj/src/TESTprogram.cpp
+	${TEST_CPP} -o prj/obj/TESTprogram.o prj/src/TESTprogram.cpp ${TEST}
+	g++ -o testP prj/obj/TESTprogram.o prj/obj/logger.o ${BOOST} ${TEST}
