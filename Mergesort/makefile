@@ -35,8 +35,8 @@ clearLogs:
 testMS_run: testMS
 	./testMS --log_level=test_suite
 
-# testAF_run: testAF
-# 	./testAF --log_level=test_suite
+testAF_run: testAF
+	./testAF --log_level=test_suite
 
 # testQP_run: clearLogs testQP
 # 	./testQP --log_level=test_suite
@@ -48,14 +48,14 @@ testMS: prj/obj prj/inc/mergesort.hpp prj/inc/merge.hpp prj/src/TESTmergesort.cp
 	${TEST_CPP} -o prj/obj/TESTmergesort.o prj/src/TESTmergesort.cpp ${TEST}
 	g++ -o testMS prj/obj/TESTmergesort.o ${TEST}
 
-# testAF: prj/obj prj/inc/quicksort.hpp prj/inc/quicksortswap.hpp prj/inc/additionalFunctions.hpp prj/src/TESTadditionalFunctions.cpp
-# 	${TEST_CPP} -o prj/obj/TESTadditionalFunctions.o prj/src/TESTadditionalFunctions.cpp ${TEST}
-# 	g++ -o testAF prj/obj/TESTadditionalFunctions.o ${TEST}
+testAF: prj/obj prj/inc/mergesort.hpp prj/inc/merge.hpp prj/inc/additionalFunctions.hpp prj/src/TESTadditionalFunctions.cpp
+	${TEST_CPP} -o prj/obj/TESTadditionalFunctions.o prj/src/TESTadditionalFunctions.cpp ${TEST}
+	g++ -o testAF prj/obj/TESTadditionalFunctions.o ${TEST}
 
-# testQP: prj/obj prj/inc/quicksort.hpp prj/inc/quicksortswap.hpp prj/inc/presentation.hpp prj/obj/logger.o prj/src/TESTpresentation.cpp
+# testQP: prj/obj prj/inc/mergesort.hpp prj/inc/merge.hpp prj/inc/presentation.hpp prj/obj/logger.o prj/src/TESTpresentation.cpp
 # 	${TEST_CPP} -o prj/obj/TESTpresentation.o prj/src/TESTpresentation.cpp ${TEST}
 # 	g++ -o testQP prj/obj/TESTpresentation.o prj/obj/logger.o ${BOOST} ${TEST}
 
-# testP: prj/obj prj/inc/quicksort.hpp prj/inc/quicksortswap.hpp prj/inc/presentation.hpp prj/inc/program.hpp prj/src/TESTprogram.cpp
+# testP: prj/obj prj/inc/mergesort.hpp prj/inc/merge.hpp prj/inc/presentation.hpp prj/inc/program.hpp prj/src/TESTprogram.cpp
 # 	${TEST_CPP} -o prj/obj/TESTprogram.o prj/src/TESTprogram.cpp ${TEST}
 # 	g++ -o testP prj/obj/TESTprogram.o prj/obj/logger.o ${BOOST} ${TEST}
