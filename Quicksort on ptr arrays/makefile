@@ -35,8 +35,8 @@ clearLogs:
 testQS_run: testQS
 	./testQS --log_level=test_suite
 
-# testAF_run: testAF
-# 	./testAF --log_level=test_suite
+testAF_run: testAF
+	./testAF --log_level=test_suite
 
 # testQP_run: clearLogs testQP
 # 	./testQP --log_level=test_suite
@@ -48,9 +48,9 @@ testQS: prj/obj prj/inc/quicksort.hpp prj/inc/quicksorthelpers.hpp prj/src/TESTq
 	${TEST_CPP} -o prj/obj/TESTquicksort.o prj/src/TESTquicksort.cpp ${TEST}
 	g++ -o testQS prj/obj/TESTquicksort.o ${TEST}
 
-# testAF: prj/obj prj/inc/quicksort.hpp prj/inc/quicksorthelpers.hpp prj/inc/additionalFunctions.hpp prj/src/TESTadditionalFunctions.cpp
-# 	${TEST_CPP} -o prj/obj/TESTadditionalFunctions.o prj/src/TESTadditionalFunctions.cpp ${TEST}
-# 	g++ -o testAF prj/obj/TESTadditionalFunctions.o ${TEST}
+testAF: prj/obj prj/inc/quicksort.hpp prj/inc/quicksorthelpers.hpp prj/inc/additionalFunctions.hpp prj/src/TESTadditionalFunctions.cpp
+	${TEST_CPP} -o prj/obj/TESTadditionalFunctions.o prj/src/TESTadditionalFunctions.cpp ${TEST}
+	g++ -o testAF prj/obj/TESTadditionalFunctions.o ${TEST}
 
 # testQP: prj/obj prj/inc/quicksort.hpp prj/inc/quicksorthelpers.hpp prj/inc/presentation.hpp prj/obj/logger.o prj/src/TESTpresentation.cpp
 # 	${TEST_CPP} -o prj/obj/TESTpresentation.o prj/src/TESTpresentation.cpp ${TEST}
