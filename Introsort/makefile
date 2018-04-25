@@ -35,8 +35,8 @@ clearLogs:
 testIS_run: testIS
 	./testIS --log_level=test_suite
 
-# testAF_run: testAF
-# 	./testAF --log_level=test_suite
+testAF_run: testAF
+	./testAF --log_level=test_suite
 
 # testQP_run: clearLogs testQP
 # 	./testQP --log_level=test_suite
@@ -48,9 +48,9 @@ testIS: prj/obj prj/inc/introsort.hpp prj/inc/introsorthelpers.hpp prj/src/TESTi
 	${TEST_CPP} -o prj/obj/TESTintrosort.o prj/src/TESTintrosort.cpp ${TEST}
 	g++ -o testIS prj/obj/TESTintrosort.o ${TEST}
 
-# testAF: prj/obj prj/inc/introsort.hpp prj/inc/introsorthelpers.hpp prj/inc/additionalFunctions.hpp prj/src/TESTadditionalFunctions.cpp
-# 	${TEST_CPP} -o prj/obj/TESTadditionalFunctions.o prj/src/TESTadditionalFunctions.cpp ${TEST}
-# 	g++ -o testAF prj/obj/TESTadditionalFunctions.o ${TEST}
+testAF: prj/obj prj/inc/introsort.hpp prj/inc/introsorthelpers.hpp prj/inc/additionalFunctions.hpp prj/src/TESTadditionalFunctions.cpp
+	${TEST_CPP} -o prj/obj/TESTadditionalFunctions.o prj/src/TESTadditionalFunctions.cpp ${TEST}
+	g++ -o testAF prj/obj/TESTadditionalFunctions.o ${TEST}
 
 # testQP: prj/obj prj/inc/introsort.hpp prj/inc/introsorthelpers.hpp prj/inc/presentation.hpp prj/obj/logger.o prj/src/TESTpresentation.cpp
 # 	${TEST_CPP} -o prj/obj/TESTpresentation.o prj/src/TESTpresentation.cpp ${TEST}
